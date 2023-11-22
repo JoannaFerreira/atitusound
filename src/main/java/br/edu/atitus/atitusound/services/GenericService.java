@@ -11,18 +11,18 @@ import br.edu.atitus.atitusound.entities.GenericEntity;
 import br.edu.atitus.atitusound.repositories.GenericRepository;
 
 public interface GenericService<TEntidade extends GenericEntity> {
-	
+
 	GenericRepository<TEntidade> getRepository();
-	
+
 	default void validateFindByName(Pageable pageable, String name) throws Exception {
-		
+
 	}
-	
+
 	default Page<List<TEntidade>> findByNameContainingIgnoreCase(Pageable pageable, String name) throws Exception {
 		validateFindByName(pageable, name);
 		return getRepository().findByNameContainingIgnoreCase(pageable, name);
 	}
-	
+
 	default void validateSave(TEntidade entidade) throws Exception {
 		if (entidade.getName() == null || entidade.getName().isEmpty())
 			throw new Exception("Campo Name Inválido!");
@@ -47,14 +47,16 @@ public interface GenericService<TEntidade extends GenericEntity> {
 	default List<TEntidade> findAll() throws Exception {
 		return getRepository().findAll();
 	}
+
 	default void validateFindById(UUID uuid) throws Exception {
-		
+
 	}
 
 	default Optional<TEntidade> findById(UUID uuid) throws Exception {
 		validateFindById(uuid);
 		return getRepository().findById(uuid);
 	}
+
 	default void validateDeleteById(UUID uuid) throws Exception {
 		if (!getRepository().existsById(uuid))
 			throw new Exception("Registro não encontrado com este UUID");

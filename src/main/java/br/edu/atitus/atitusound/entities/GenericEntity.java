@@ -10,23 +10,28 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class GenericEntity {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID uuid;
+
 	@Column(nullable = false, length = 150)
 	private String name;
-	
+
 	public UUID getUuid() {
 		return uuid;
 	}
+
 	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

@@ -10,10 +10,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_playlist")
-public class PlaylistEntity extends GenericEntity{
-	
+public class PlaylistEntity extends GenericEntity {
+
 	private boolean public_share;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_playlist_music")
 	private List<MusicEntity> musics;
@@ -33,7 +33,5 @@ public class PlaylistEntity extends GenericEntity{
 	public void setMusics(List<MusicEntity> musics) {
 		this.musics = musics;
 	}
-	
-	
 
 }

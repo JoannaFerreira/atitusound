@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("status")
 public class StatusController {
 
-	@GetMapping({"", "/aplicacao"})
+	@GetMapping({ "", "/aplicacao" })
 	public String getStatus() {
 		return "Aplicação está no Ar!";
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<String> postStatus(@RequestBody(required = false) String textoEntrada) {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Texto recebido: " + textoEntrada);

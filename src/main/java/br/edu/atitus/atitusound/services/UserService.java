@@ -4,6 +4,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import br.edu.atitus.atitusound.entities.UserEntity;
 
-public interface UserService extends GenericService<UserEntity>, UserDetailsService{
+public interface UserService extends GenericService<UserEntity>, UserDetailsService {
 
 }

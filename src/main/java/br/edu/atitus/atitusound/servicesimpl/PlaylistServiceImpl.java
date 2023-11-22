@@ -11,7 +11,7 @@ import br.edu.atitus.atitusound.services.PlaylistService;
 public class PlaylistServiceImpl implements PlaylistService {
 
 	private final PlaylistRepository playlistRepository;
-	
+
 	public PlaylistServiceImpl(PlaylistRepository playlistRepository) {
 		super();
 		this.playlistRepository = playlistRepository;

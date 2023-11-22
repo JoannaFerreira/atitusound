@@ -3,7 +3,7 @@ package br.edu.atitus.atitusound.dtos;
 public class SigninDTO {
 
 	private String username;
-	
+
 	private String password;
 
 	public String getUsername() {
@@ -21,6 +21,5 @@ public class SigninDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
 }

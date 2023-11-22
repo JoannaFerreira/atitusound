@@ -22,30 +22,31 @@ import br.edu.atitus.atitusound.utils.JwtUtils;
 public class AuthController {
 	private final UserService userService;
 	private final AuthenticationConfiguration auth;
-		
+
 	private UserEntity convertDTO2Entity(UserDTO dto) {
 		var user = new UserEntity();
 		BeanUtils.copyProperties(dto, user);
 		return user;
 	}
-	
+
 	public AuthController(UserService userService, AuthenticationConfiguration auth) {
 		super();
 		this.userService = userService;
 		this.auth = auth;
 	}
-	
+
 	@PostMapping("/signin")
 	public ResponseEntity<String> signin(@RequestBody SigninDTO signin) {
-		//Realizar a autenticação
+		// Realizar a autenticação
 		try {
-			auth.getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(signin.getUsername(), signin.getPassword()));
+			auth.getAuthenticationManager()
+					.authenticate(new UsernamePasswordAuthenticationToken(signin.getUsername(), signin.getPassword()));
 		} catch (AuthenticationException e) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).header("error", e.getMessage()).build();
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("error", e.getMessage()).build();
 		}
-		//Gerar o Token e retornar para o usuário
+		// Gerar o Token e retornar para o usuário
 		String jwt = JwtUtils.generateTokenFromUsername(signin.getUsername());
 		return ResponseEntity.ok(jwt);
 	}
