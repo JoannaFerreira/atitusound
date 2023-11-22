@@ -11,7 +11,7 @@ import br.edu.atitus.atitusound.services.GenericService;
 
 @RestController
 @RequestMapping("/artists")
-public class ArtistController extends GenericController<ArtistEntity, ArtistDTO>{
+public class ArtistController extends GenericController<ArtistEntity, ArtistDTO> {
 
 	private final ArtistService artistService;
 
@@ -29,7 +29,5 @@ public class ArtistController extends GenericController<ArtistEntity, ArtistDTO>
 	public GenericService<ArtistEntity> getService() {
 		return artistService;
 	}
-	
-	
 
 }
