@@ -44,10 +44,14 @@ public abstract class GenericController<TEntidade extends GenericEntity, TDto> {
 	@GetMapping
 	public ResponseEntity<Page<List<TEntidade>>> get(
 			@PageableDefault(page = 0, size = 10, sort = "name", direction = Direction.ASC) Pageable pageable,
-			@RequestParam String name) {
+			@RequestParam(required = false) Optional<String> name) {
 		Page<List<TEntidade>> lista;
 		try {
-			lista = getService().findByNameContainingIgnoreCase(pageable, name);
+			if (name.isPresent()) {
+				lista = getService().findByNameContainingIgnoreCase(pageable, name.get());
+			} else {
+				lista = getService().findByNameContainingIgnoreCase(pageable, "");
+			}
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().header("error", e.getMessage()).build();
 		}

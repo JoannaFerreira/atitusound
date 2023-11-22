@@ -1,7 +1,6 @@
 package br.edu.atitus.atitusound.entities;
 
 import java.time.Duration;
-import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,11 +13,12 @@ import jakarta.persistence.Table;
 public class MusicEntity extends GenericEntity {
 
 	private Duration duration;
+	private int like_count;
+	private String url;
+
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "artist_uuid")
 	private ArtistEntity artist;
-	private int like_count;
-	private String url;
 
 	public String getUrl() {
 		return url;

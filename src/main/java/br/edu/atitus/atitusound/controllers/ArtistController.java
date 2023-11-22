@@ -20,9 +20,10 @@ public class ArtistController extends GenericController<ArtistEntity, ArtistDTO>
 	}
 
 	protected ArtistEntity convertDTO2Entity(ArtistDTO dto) {
-		ArtistEntity entidade = new ArtistEntity();
-		BeanUtils.copyProperties(dto, entidade);
-		return entidade;
+		ArtistEntity entity = new ArtistEntity();
+		entity.setName(dto.getName());
+		entity.setImage(dto.getImage());
+		return entity;
 	}
 
 	@Override

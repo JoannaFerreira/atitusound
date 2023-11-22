@@ -18,17 +18,7 @@ public interface GenericRepository<TEntidade extends GenericEntity> extends JpaR
 	boolean existsByNameAndUuidNot(String name, UUID uuid);
 
 	boolean existsByName(String name);
-	// select * from tb_artist where name = 'valor_parametro';
 
 	Page<List<TEntidade>> findByNameContainingIgnoreCase(Pageable pageable, String name);
 
-	// @Query(value = "update tb_artist set name = ?1 where uuid = ?2", nativeQuery
-	// = true)
-	@Query(value = "update #{#entityName} set name = :name where uuid = :uuid")
-	TEntidade updateName(@Param("name") String name, @Param("uuid") UUID uuid);
-	/*
-	 * default boolean existsByNameAndUuidNotOrUuidIsNull(String name, UUID uuid) {
-	 * if (uuid == null) { return existsByName(name); } else { return
-	 * existsByNameAndUuidNot(name, uuid); } }
-	 */
 }

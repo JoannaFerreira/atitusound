@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.atitus.atitusound.dtos.MusicDTO;
+import br.edu.atitus.atitusound.entities.ArtistEntity;
 import br.edu.atitus.atitusound.entities.MusicEntity;
 import br.edu.atitus.atitusound.services.MusicService;
 import br.edu.atitus.atitusound.services.GenericService;
@@ -19,9 +20,15 @@ public class MusicController extends GenericController<MusicEntity, MusicDTO> {
 		this.musicService = musicService;
 	}
 
+	@Override
 	protected MusicEntity convertDTO2Entity(MusicDTO dto) {
 		MusicEntity entidade = new MusicEntity();
-		BeanUtils.copyProperties(dto, entidade);
+		entidade.setDuration(dto.getDuration());
+		entidade.setName(dto.getName());
+		entidade.setUrl(dto.getUrl());
+		ArtistEntity entidadeArtista = new ArtistEntity();
+		entidadeArtista.setUuid(dto.getArtist().getUuid());
+		entidade.setArtist(entidadeArtista);
 		return entidade;
 	}
 
