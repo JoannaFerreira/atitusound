@@ -9,24 +9,22 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class ConfigSecurity {
-	
+
 	private final AuthTokenFilter authTokenFilter;
-	
+
 	public ConfigSecurity(AuthTokenFilter authTokenFilter) {
 		super();
 		this.authTokenFilter = authTokenFilter;
 	}
 
-
 	@Bean
 	public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
 		http
-			.csrf(csrf -> csrf.disable())
-			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-			.authorizeHttpRequests(auth -> auth
-					.requestMatchers("/auth/**").permitAll()
-					.anyRequest().authenticated())
-			.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
+				.csrf(csrf -> csrf.disable())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/authentication/**", "/auth/**", "/swagger-ui**",
+						"swagger-ui/**", "/v3/api-docs/**").permitAll().anyRequest().authenticated())
+				.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
 
