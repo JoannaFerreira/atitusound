@@ -4,6 +4,7 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
@@ -25,6 +26,9 @@ public class ConfigSwagger {
                 .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
                 .info(new Info().title("Atitus Sound API")
                         .description("Atitus Sound Swagger").version("Version 1.0.0")
-                        .contact(new Contact().name("Joanna Ferreira").email("joannaferreira098@gmail.com")));
+                        .contact(new Contact().name("Joanna Ferreira").email("joannaferreira098@gmail.com")))
+                .addServersItem(new Server().url("https://atitusound-production-a352.up.railway.app"))
+                .addServersItem(new Server().url("http://localhost:3000"));
     }
+
 }

@@ -12,7 +12,8 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://atitusound-production-a352.up.railway.app")
+                .allowedOrigins("http://atitusound-production-a352.up.railway.app",
+                        "https://atitusound-production-a352.up.railway.app")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowCredentials(true)
                 .maxAge(3600);
